@@ -7,14 +7,17 @@ bot = Bot(token=api)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 
+@dp.message_handler(commands=['start'])
+async def start(message):
+    await message.answer('Привет! Я бот помогающий твоему здоровью.')
+
+
 class UserState(StatesGroup):
     age = State()
     growth = State()
     weight = State()
 
-    @dp.message_handler(commands=['start'])
-    async def start(message):
-        await message.answer('Привет! Я бот помогающий твоему здоровью.')
+
 
 
 @dp.message_handler(text='Calories')
